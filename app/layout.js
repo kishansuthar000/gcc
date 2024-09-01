@@ -1,7 +1,9 @@
-import { Inter } from "next/font/google";
+import { Noto_Sans } from "next/font/google";
+import Link from "next/link";
+import styles from "./rootStyle.module.css";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const fontFamily = Noto_Sans({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Create Next App",
@@ -10,8 +12,36 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className={fontFamily.className}>
+      <body>
+        <header>
+          <nav>
+            <ul>
+              <li>
+                <Link className={styles.homeLink} href={"/home"}>
+                  Globomantics Home
+                </Link>
+              </li>
+              <li>
+                <Link className={styles.menuBarLink} href={"/blog"}>
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link className={styles.menuBarLink} href={"/settings"}>
+                  Settings
+                </Link>
+              </li>
+              <li>
+                <Link className={styles.menuBarLink} href={"/conference"}>
+                  Conference
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        </header>
+        {children}
+      </body>
     </html>
   );
 }
