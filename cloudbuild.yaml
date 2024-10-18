@@ -18,11 +18,10 @@ steps:
           echo "Unknown branch: $BRANCH_NAME"
           exit 1
         fi
-        sed -i "s/{{NAMESPACE}}/$NAMESPACE/g" deployment.yaml
-        sed -i "s/{{IMAGE_TAG}}/$SHORT_SHA/g" deployment.yaml
-        sed -i "s/{{NAMESPACE}}/$NAMESPACE/g" service.yaml
-        kubectl apply -f deployment.yaml
-        kubectl apply -f service.yaml
+        export NAMESPACE
+        export SHORT_SHA=$SHORT_SHA  # Ensure SHORT_SHA is available
+        envsubst < k8s/deployment.yaml | kubectl apply -f -
+        envsubst < k8s/service.yaml | kubectl apply -f -
 images:
   - 'gcr.io/$PROJECT_ID/gfsa-fe:$SHORT_SHA'
 options:

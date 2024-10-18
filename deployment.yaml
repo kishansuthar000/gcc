@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: gfsa-fe
-        image: gcr.io/gfsa-438010/nextjs-app:{{IMAGE_TAG}}
+        image: gcr.io/$PROJECT_ID/gfsa-fe:{{IMAGE_TAG}}  # Use the dynamic image tag
         ports:
         - containerPort: 3000
