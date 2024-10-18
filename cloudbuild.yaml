@@ -1,7 +1,9 @@
 steps:
+  # Step to print environment variables for debugging
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'gcr.io/$PROJECT_ID/nextjs-app:$SHORT_SHA','.']
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/nextjs-app:$SHORT_SHA'] 
+    args: ['push', 'gcr.io/$PROJECT_ID/nextjs-app:$SHORT_SHA']
 images:
   - 'gcr.io/$PROJECT_ID/nextjs-app:$SHORT_SHA'
+

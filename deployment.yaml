@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gcc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gcc
+  template:
+    metadata:
+      labels:
+        app: gcc
+    spec:
+      containers:
+      - name: hello-world
+        image: gcr.io/gfsa-438010/nextjs-app:latest
+        ports:
+        - containerPort: 3000
