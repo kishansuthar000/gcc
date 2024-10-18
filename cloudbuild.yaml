@@ -20,8 +20,8 @@ steps:
         fi
         export NAMESPACE
         export SHORT_SHA=$SHORT_SHA  # Ensure SHORT_SHA is available
-        envsubst < deployment.yaml | kubectl apply -f - -n $NAMESPACE
-        envsubst < service.yaml | kubectl apply -f - -n $NAMESPACE
+        envsubst < deployment.yaml | kubectl apply -f - -n dev
+        envsubst < service.yaml | kubectl apply -f - -n dev
 images:
   - 'gcr.io/$PROJECT_ID/gfsa-fe:$SHORT_SHA'
 options:
