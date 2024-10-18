@@ -15,6 +15,7 @@ spec:
     spec:
       containers:
       - name: gfsa-fe
-        image: gcr.io/$PROJECT_ID/gfsa-fe:702ff6c  # Use the dynamic image tag
+        image: gcr.io/gfsa-438010/gfsa-fe:702ff6c
+        imagePullPolicy: Always 
         ports:
         - containerPort: 3000
