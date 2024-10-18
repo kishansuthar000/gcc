@@ -1,19 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: gcc
+  name: gfsa-fe
+  namespace: uat
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: gcc
+      app: gfsa-fe
   template:
     metadata:
       labels:
-        app: gcc
+        app: gfsa-fe
     spec:
       containers:
-      - name: hello-world
-        image: gcr.io/gfsa-438010/nextjs-app:latest
+      - name: gfsa-fe
+        image: gcr.io/gfsa-438010/gfsa-fe:702ff6c
+        imagePullPolicy: Always 
         ports:
         - containerPort: 3000

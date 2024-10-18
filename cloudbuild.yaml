@@ -1,9 +1,28 @@
 steps:
-  # Step to print environment variables for debugging
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/nextjs-app:$SHORT_SHA','.']
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/gfsa-fe:702ff6c', '.']
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/nextjs-app:$SHORT_SHA']
+    args: ['push', 'gcr.io/$PROJECT_ID/gfsa-fe:702ff6c']
+  - name: 'gcr.io/cloud-builders/kubectl'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        if [[ "$BRANCH_NAME" == "dev" ]]; then
+          NAMESPACE="dev"
+        elif [[ "$BRANCH_NAME" == "qa" ]]; then
+          NAMESPACE="qa"
+        elif [[ "$BRANCH_NAME" == "uat" ]]; then
+          NAMESPACE="uat"
+        else
+          echo "Unknown branch: $BRANCH_NAME"
+          exit 1
+        fi
+        export NAMESPACE
+        export SHORT_SHA=$SHORT_SHA  # Ensure SHORT_SHA is available
+        envsubst < deployment.yaml | kubectl apply -f - -n uat
+        envsubst < service.yaml | kubectl apply -f - -n uat
 images:
-  - 'gcr.io/$PROJECT_ID/nextjs-app:$SHORT_SHA'
-
+  - 'gcr.io/$PROJECT_ID/gfsa-fe:702ff6c'
+options:
+  logging: CLOUD_LOGGING_ONLY
