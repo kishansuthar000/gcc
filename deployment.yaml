@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: gfsa-fe
-  namespace: uat
+  namespace: ${NAMESPACE}
 spec:
   replicas: 1
   selector:
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: gfsa-fe
-        image: gcr.io/gfsa-438010/gfsa-fe:702ff6c
+        image: gcr.io/gfsa-438010/gfsa-fe:$IMAGE_TAG
         imagePullPolicy: Always 
         ports:
         - containerPort: 3000
