@@ -23,7 +23,7 @@ steps:
         envsubst < deployment.yaml | kubectl apply -f - -n $NAMESPACE
         envsubst < service.yaml | kubectl apply -f - -n $NAMESPACE
         envsubst < ingress.yaml | kubectl apply -f - -n $NAMESPACE
-images:
-  - 'gcr.io/$PROJECT_ID/gfsa-fe:$SHORT_SHA'
-options:
-  logging: CLOUD_LOGGING_ONLY
+      images:
+        - 'gcr.io/$PROJECT_ID/gfsa-fe:$SHORT_SHA'
+      options:
+      logging: CLOUD_LOGGING_ONLY
