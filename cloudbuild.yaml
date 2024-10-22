@@ -21,8 +21,8 @@ steps:
         sed -i "s/{{NAMESPACE}}/$NAMESPACE/g" deployment.yaml
         sed -i "s/{{IMAGE_TAG}}/$SHORT_SHA/g" deployment.yaml
         sed -i "s/{{NAMESPACE}}/$NAMESPACE/g" service.yaml
-        kubectl apply -f deployment.yaml --namespace=$NAMESPACE
-        kubectl apply -f service.yaml --namespace=$NAMESPACE
+        kubectl apply -f deployment.yaml --namespace=qa
+        kubectl apply -f service.yaml --namespace=qa
         kubectl apply -f ingress.yaml --namespace=default
 images:
   - 'gcr.io/$PROJECT_ID/gfsa-fe:$SHORT_SHA'
