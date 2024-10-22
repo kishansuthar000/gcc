@@ -15,6 +15,7 @@ spec:
     spec:
       containers:
       - name: gfsa-fe
-        image: gcr.io/gfsa-438010/nextjs-app:{{IMAGE_TAG}}
+        image: gcr.io/gfsa-438010/gfsa-fe:$IMAGE_TAG
+        imagePullPolicy: Always 
         ports:
         - containerPort: 3000
