@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: gfsa-fe
-  namespace: dev
+  namespace: ${NAMESPACE}
 spec:
   type: LoadBalancer
   selector:
