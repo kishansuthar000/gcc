@@ -1,8 +1,8 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: gfsa-fe-ingress
-  namespace: default
+  name: gfsa-fe-ingress-qa
+  namespace: qa
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
     kubernetes.io/ingress.global-static-ip-name: "my-static-ip"
@@ -12,27 +12,10 @@ spec:
   - host: ""
     http:
       paths:
-      - path: /dev
-        pathType: Prefix
-        backend:
-          service:
-            name: gfsa-fe
-            namespace: dev
-            port:
-              number: 80
       - path: /qa
         pathType: Prefix
         backend:
           service:
             name: gfsa-fe
-            namespace: qa
-            port:
-              number: 80
-      - path: /uat
-        pathType: Prefix
-        backend:
-          service:
-            name: gfsa-fe
-            namespace: uat
             port:
               number: 80
