@@ -5,7 +5,9 @@ metadata:
   namespace: default
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.global-static-ip-name: "my-static-ip"
 spec:
+  ingressClassName: nginx
   rules:
   - host: ""
     http:
@@ -15,6 +17,7 @@ spec:
         backend:
           service:
             name: gfsa-fe
+            namespace: dev
             port:
               number: 80
       - path: /qa
@@ -22,6 +25,7 @@ spec:
         backend:
           service:
             name: gfsa-fe
+            namespace: qa
             port:
               number: 80
       - path: /uat
@@ -29,5 +33,6 @@ spec:
         backend:
           service:
             name: gfsa-fe
+            namespace: uat
             port:
               number: 80
