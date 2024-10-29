@@ -1,9 +1,9 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: gfsa-fe-ingress
-  namespace: default
+  name: gcc
   annotations:
+    kubernetes.io/ingress.global-static-ip-name: "my-static-ip"
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
@@ -14,20 +14,20 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: gfsa-fe
+            name: gcc
             port:
-              number: 80
-      - path: /qa
-        pathType: Prefix
-        backend:
-          service:
-            name: gfsa-fe
-            port:
-              number: 80
+              number: 3000
       - path: /uat
         pathType: Prefix
         backend:
           service:
-            name: gfsa-fe
+            name: gcc
             port:
-              number: 80
+              number: 3000
+      - path: /qa
+        pathType: Prefix
+        backend:
+          service:
+            name: gcc
+            port:
+              number: 3000
