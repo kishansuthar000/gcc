@@ -14,8 +14,13 @@ spec:
         app: gfsa-fe
     spec:
       containers:
+<<<<<<< HEAD:deployment.yaml
       - name: gfsa-fe
         image: gcr.io/gfsa-438010/gfsa-fe:$IMAGE_TAG
         imagePullPolicy: Always 
+=======
+      - name: gcc
+        image: gcr.io/gfsa-438010/gcc:latest
+>>>>>>> main:k8s/deployment.yml
         ports:
         - containerPort: 3000
